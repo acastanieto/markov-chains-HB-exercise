@@ -19,7 +19,7 @@ def make_chains():
 
     text_file = open("green-eggs.txt")
 
-    text_string = (text_file.read().replace("\n", " ")).lower()
+    text_string = text_file.read().replace("\n", " ").lower().rstrip()
 
     text_no_punct = ""
 
@@ -27,10 +27,22 @@ def make_chains():
         if char.isalpha() or char == " ":
             text_no_punct += char
 
+    word_list = text_no_punct.split(" ")
 
-    print text_no_punct
+    bigrams = dict() 
+    # also bigrams = {} works
+    for index, current_word in enumerate(word_list):
+        second_word = word_list[index + 1]
+        if index + 1 == len(word_list) - 1:
+            break
+        third_word = word_list[index + 2]
 
 
+
+    # alist = [1, 2]
+    # tups = tuple(alist)
+    # prints (1, 2)
+ 
     return {}
 
 make_chains()
