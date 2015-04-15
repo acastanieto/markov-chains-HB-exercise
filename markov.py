@@ -41,7 +41,7 @@ def make_chains(file_name):
         third_word = word_list[index + 2]
 
         bigrams.setdefault((current_word, second_word), [])
-        bigrams[current_word, second_word].append(third_word)
+        bigrams[(current_word, second_word)].append(third_word)
         # the code below does the same thing:
         # if (current_word, second_word) not in bigrams:
         #     bigrams[current_word, second_word] = []
@@ -82,7 +82,7 @@ def make_text(chains):
     
     while rand_key in chains:
         
-        new_bigram = tuple([key2, rand_value_word])
+        new_bigram = (key2, rand_value_word)
         if new_bigram in chains:
             rand_new_word = random.choice(chains[new_bigram])
             markov_string += " " + rand_new_word
