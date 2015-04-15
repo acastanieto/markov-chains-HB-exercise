@@ -1,7 +1,8 @@
 import sys
 
+script, file_name = sys.argv
 
-def make_chains():
+def make_chains(file_name):
     """Takes input text as string; returns dictionary of markov chains."""
     # 1. open the text file, assign it to a variable
     # 2. read entire text as one string, strip of punctuation and \n
@@ -17,17 +18,17 @@ def make_chains():
     #         following the tuple that was just made (if index of 2nd word in 
     #         tuple == len of list, then stop)
 
-    text_file = open("green-eggs.txt")
+    text_file = open(file_name)
 
-    text_string = text_file.read().replace("\n", " ").lower().rstrip()
-
+    # text_string = text_file.read().replace("\n", " ").lower().rstrip()
+    text_string = text_file.read().replace("\n", " ").lower().strip()
     text_no_punct = ""
 
     for char in text_string:
         if char.isalpha() or char == " ":
             text_no_punct += char
 
-    word_list = text_no_punct.split(" ")
+    word_list = text_no_punct.split()
 
     bigrams = dict() 
 
@@ -92,7 +93,7 @@ def make_text(chains):
             return markov_string
 
         
-print(make_text(make_chains()))
+print(make_text(make_chains(file_name)))
 # Change this to read input_text from a file, deciding which file should
 # be used by examining the `sys.argv` arguments (if neccessary, see the
 # Python docs for sys.argv)
