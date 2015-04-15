@@ -78,32 +78,23 @@ def make_text(chains):
     # use that number as the index to retrieve a key from a list of chains.keys()
 
     key1, key2 = rand_key
+    
     markov_string = key1 + " " + key2 + " " + rand_value_word
     
     while rand_key in chains:
-        
+
         new_bigram = (key2, rand_value_word)
+
         if new_bigram in chains:
             rand_new_word = random.choice(chains[new_bigram])
             markov_string += " " + rand_new_word
             key2 = rand_value_word
-            rand_value_word = rand_new_word            
+            rand_value_word = rand_new_word 
+            rand_key = new_bigram           
+
         else:
             markov_string += "."
             return markov_string
 
         
 print(make_text(make_chains(file_name)))
-# Change this to read input_text from a file, deciding which file should
-# be used by examining the `sys.argv` arguments (if neccessary, see the
-# Python docs for sys.argv)
-
-input_text = "Some textSome textSome textSome textSome textSome textSome textSome textSome textSome textSome textSome textSome textSome text"
-
-# Get a Markov chain
-#chain_dict = make_chains(input_text)
-
-# Produce random text
-# random_text = make_text(chain_dict)
-
-# print random_text
